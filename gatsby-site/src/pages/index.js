@@ -1,22 +1,63 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, {useState} from "react";
+import Header from "../components/Header";
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import styled from 'styled-components';
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+import './reset.css';
+
+import configIcon from '../assets/config.svg';
+
+export const EditorWrapper = styled.div`
+    width: 300px;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #151515;
+`;
+
+export const EditorBtn = styled.button`
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 0 0 0 100%;
+    padding: 0 0 10px 10px;
+`;
+
+const IndexPage = () => {
+  const [test, setTest] = useState(true);
+  const [cor, setCor] = useState('#555');
+
+  const handleShowClick = () => {
+      setTest(!test);
+  }
+
+  return (
+    <div>
+      <Header 
+        pageTitle={cor}
+      />
+
+      <EditorBtn onClick={handleShowClick}>
+        <img src={configIcon} alt="Configurações"/>
+      </EditorBtn>
+
+      {test && <EditorWrapper>
+        <h1>Configurações</h1>
+        <div>
+          <label htmlFor="pageTitle">Título da página: {cor}</label>
+          <input type="color" id="pageTitle" value={cor} onChange={e => setCor(e.target.value)}/>
+        </div>
+      </EditorWrapper>}
     </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+  )
+}
 
-export default IndexPage
+
+export default IndexPage;
