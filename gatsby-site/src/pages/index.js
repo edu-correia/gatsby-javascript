@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Header from "../components/Header";
+import Content from "../components/Content";
 
 import styled from 'styled-components';
 
@@ -14,6 +15,7 @@ export const EditorWrapper = styled.div`
     right: 0;
     top: 0;
     background-color: #151515;
+    border-left: 5px solid #fff;
 `;
 
 export const EditorBtn = styled.button`
@@ -32,7 +34,10 @@ export const EditorBtn = styled.button`
 
 const IndexPage = () => {
   const [test, setTest] = useState(true);
-  const [cor, setCor] = useState('#555');
+
+  const [pageTitle, setPageTitle] = useState('#fff');
+  const [navBar, setNavBar] = useState('#000');
+  const [contentBg, setContentBg] = useState('#ddd');
 
   const handleShowClick = () => {
       setTest(!test);
@@ -41,8 +46,15 @@ const IndexPage = () => {
   return (
     <div>
       <Header 
-        pageTitle={cor}
+        pageTitle={pageTitle}
+        navBar={navBar}
       />
+
+      <Content
+        contentBg={contentBg}
+      >
+
+      </Content>
 
       <EditorBtn onClick={handleShowClick}>
         <img src={configIcon} alt="Configurações"/>
@@ -50,9 +62,19 @@ const IndexPage = () => {
 
       {test && <EditorWrapper>
         <h1>Configurações</h1>
-        <div>
-          <label htmlFor="pageTitle">Título da página: {cor}</label>
-          <input type="color" id="pageTitle" value={cor} onChange={e => setCor(e.target.value)}/>
+        <div className="input-block">
+          <label htmlFor="pageTitle">Título da página:</label>
+          <input type="color" id="pageTitle" value={pageTitle} onChange={e => setPageTitle(e.target.value)}/>
+        </div>
+
+        <div className="input-block">
+          <label htmlFor="navBar">Fundo do menu:</label>
+          <input type="color" id="navBar" value={navBar} onChange={e => setNavBar(e.target.value)}/>
+        </div>
+
+        <div className="input-block">
+          <label htmlFor="contentBg">Background da página:</label>
+          <input type="color" id="contentBg" value={contentBg} onChange={e => setContentBg(e.target.value)}/>
         </div>
       </EditorWrapper>}
     </div>

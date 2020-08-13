@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HeaderWrapper = styled.header`
     width: 100vw;
     height: 100px;
-    background-color: #444;
+    background: ${props => props.navBar};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,5 +11,5 @@ export const HeaderWrapper = styled.header`
 
 export const PageTitle = styled.h1`
     font: 700 56px sans-serif;
-    color: ${props => props.cor};
+    color: ${props => props.pageTitle};
 `;

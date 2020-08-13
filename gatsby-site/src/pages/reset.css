@@ -21,3 +21,17 @@ h1{
 label{
     color: white;
 }
+
+.input-block{
+    font: 400 24px sans-serif;
+    width: auto;
+    height: 40px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    width: 100px;
+    height: 25px;
+}
